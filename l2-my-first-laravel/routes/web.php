@@ -2,11 +2,22 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::get('/', function () {
 
     $data = [
-        "name" => "Rodolfo",
-        "profession"  => "Developer"
+        "name" => "Bob",
+        "profession" => "Builder",
+        "fruit" => [
+            "Apples",
+            "Oranges",
+            "Pears",
+            "Pineapples"
+        ]
     ];
-     return view('homepage', $data);
-} );
+
+    return view("homepage", $data);
+});
