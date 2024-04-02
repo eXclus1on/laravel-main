@@ -6,6 +6,12 @@
     <title>Aula 02-04-2024</title>
 </head>
 <body>
-    <h1>My homepage</h1>
+    <h1> {{ $title }} </h1>
+    <h2> Here's some movies...</h2>
+    <ul>
+        @foreach ($movies as $movie)
+            <li> {{ $movie }} </li>
+        @endforeach
+    </ul>
 </body>
 </html>
