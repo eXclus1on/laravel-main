@@ -9,7 +9,14 @@ class AppController extends Controller
 {
     public function  homepage() {
 
-        $cities = DB::select('SELECT * FROM city');
+        $name = isset ($_GET['name']) ? $_GET['name'] : '';
+        $name = '%' . $name . '%';
+
+        $params = [
+            $name
+        ];
+
+        $cities = DB::select('SELECT * FROM city WHERE name LIKE ?', $params);
 
 
         $data = [
@@ -24,6 +31,10 @@ class AppController extends Controller
         ];
         return view('homepage', $data);
     }
+    public function getCities(){
+        return view('cities');
+    }
+    
 }
 
 //php artisan make:controller App/AppController --resource

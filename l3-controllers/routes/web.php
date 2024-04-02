@@ -9,3 +9,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route:: get('/',[AppController ::class,'homepage']);
+Route::get('/cities', [AppController::class, 'getCities']);
