@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AppController extends Controller
 {
     public function  homepage() {
+
+        $cities = DB::select('SELECT * FROM city');
+
+
         $data = [
             'title' => 'Welcome to my website! Enjoy!',
             'movies' => [
@@ -14,7 +19,8 @@ class AppController extends Controller
                 'The Godfather',
                 'Pulp Fiction',
                 'Fight Club',
-            ]
+            ],
+            'cities' => $cities 
         ];
         return view('homepage', $data);
     }

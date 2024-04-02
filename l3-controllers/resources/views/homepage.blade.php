@@ -13,5 +13,10 @@
             <li> {{ $movie }} </li>
         @endforeach
     </ul>
+    <ul>
+        @foreach ($cities as $city)
+        <li>{{ $city->Name }}</li>
+        @endforeach
+    </ul>
 </body>
 </html>
