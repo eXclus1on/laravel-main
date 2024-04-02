@@ -4,21 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"/>
-    <title>Aula 02-04-2024</title>
+    <title>Document</title>
 </head>
 
 <body>
-    <h1> {{ $title }} </h1>
-    <h2> Here's some movies...</h2>
+    <h1>Welcome to my Website!</h1>
+    <h2>Here's some movies...</h2>
     <ul>
         @foreach ($movies as $movie)
-        <li> {{ $movie }} </li>
-        @endforeach
-    </ul>
-    <ul>
-        @foreach ($cities as $city)
-        <li>{{ $city->Name }}</li>
+        <li>{{$movie}}</li>
         @endforeach
     </ul>
 
@@ -31,15 +25,14 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($cities as $city)
+            @foreach($cities as $city)
             <tr>
-                <tr> {{ $city->Name }}</tr>
-                <tr> {{ $city->CountryCode }}</tr>
-                <tr> {{ $city->Population }}</tr>
+                <td>{{$city -> Name}}</td>
+                <td>{{$city -> CountryCode}}</td>
+                <td>{{$city -> Population}}</td>
             </tr>
             @endforeach
         </tbody>
-    </table>
 </body>
 
 </html>
