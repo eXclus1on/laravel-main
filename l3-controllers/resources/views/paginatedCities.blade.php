@@ -29,8 +29,20 @@
             @endforeach
         </tbody>
     </table>
-    <a href="?page={{ $page - 1 }} ">Anterior</a>
+
+    @if ($page == 1)
+    <span>Anterior</span>
+    @else
+    <a href="?page ={{ $page - 1 }}">Anterior</a>
+    @endif
+    |
+    @if ($page == ceil ($total/20))
+    <span>Próxima</span>
+    @else
     <a href="?page={{ $page + 1 }} ">Seguinte</a>
+    @endif
+
+    <p>Página {{$page}} de {{ ceil ($total/20)}}</p>
 </body>
 
 </html>
