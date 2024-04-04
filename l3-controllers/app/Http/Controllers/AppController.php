@@ -7,39 +7,46 @@ use Illuminate\Support\Facades\DB;
 
 class AppController extends Controller
 {
-    public function  homepage() {
-
-        $name = isset ($_GET['name']) ? $_GET['name'] : '';
-        $name = '%' . $name . '%';
+    public function homepage()
+    {
+        $name = isset($_GET['name']) ? $_GET['name'] : ''; // Porto
+        $name = '%' . $name . '%'; // %Porto%
 
         $params = [
             $name
         ];
-
-        $cities = DB::select('SELECT * FROM city WHERE name LIKE ?', $params);
-
+        $cities = DB::select('SELECT * FROM city WHERE Name LIKE ?', $params);
 
         $data = [
             'title' => 'Welcome to my website! Enjoy!',
             'movies' => [
-                'The Shawshank Redemption',
-                'The Godfather',
-                'Pulp Fiction',
-                'Fight Club',
+                'LOTR',
+                'Matrix',
+                'Barbie',
+                'Harry Potter and the chamber of secrets'
             ],
-            'cities' => $cities 
+            'cities' => $cities
         ];
+
         return view('homepage', $data);
     }
-    public function getCities(){
-        return view('cities');
+
+    public function getCities()
+    {
+        $cityUserInput = isset($_GET['city']) ? $_GET['city'] : '';
+        $cityQueryParam = '%' . $cityUserInput . '%';
+
+        $params = [$cityQueryParam];
+        $cities = DB::select('SELECT * FROM city WHERE Name LIKE ?', $params);
+
+        $data = [
+            'search' => $cityUserInput,
+            'cities' => $cities
+        ];
+
+        return view('cities', $data);
     }
-    
 }
 
-//php artisan make:controller App/AppController --resource
-//Ele criou um controller chamado "AppController" e aqui estão as funções que ele gerou.
-
-//public function index() {} // Mostra todos os dados da tabela (index)
-
-//public function create() {} // Abre formulário para adicionar novos registros (create)
+// criei este fx no terminal com o seguinte comando:
+// php artisan make:controller AppController
