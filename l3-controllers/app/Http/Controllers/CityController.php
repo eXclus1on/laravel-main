@@ -15,9 +15,14 @@ class CityController extends Controller
     $params = [$offset];
 
     $cities =  DB::select('SELECT * FROM city LIMIT 20 OFFSET ?', $params);
+
+    $citiesTotal = DB::select ('SELECT COUNT(*) as total FROM city');
+    $total = $citiesTotal [0]->total;
+
     $data = [
         'cities' =>  $cities,
-        'page' => $page
+        'page' => $page,
+        'total' => $total
     ];
     return view( "paginatedCities", $data );
    }

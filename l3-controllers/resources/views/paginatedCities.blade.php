@@ -10,6 +10,7 @@
 
 <body>
     <h1>City List</h1>
+    <p>Total de resultados disponiveis: {{ $total }}</p>
     <table>
         <thead>
             <tr>
