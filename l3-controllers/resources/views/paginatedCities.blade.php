@@ -11,6 +11,18 @@
 <body>
     <h1>City List</h1>
     <p>Total de resultados disponiveis: {{ $total }}</p>
+    
+        <form method="GET" action="">
+            Mostrar
+            <select name="per_page">
+                <option value="20"</option>
+                <option value="50"</option>
+                <option value="100"</option>
+            </select>
+            cidades por página
+            <button type="submit">Aplicar</button>
+        </form>
+    
     <table>
         <thead>
             <tr>
