@@ -28,6 +28,8 @@
             @endforeach
         </tbody>
     </table>
+    <a href="?page={{ $page - 1 }} ">Anterior</a>
+    <a href="?page={{ $page + 1 }} ">Seguinte</a>
 </body>
 
 </html>

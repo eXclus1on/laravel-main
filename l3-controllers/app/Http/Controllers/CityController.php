@@ -12,12 +12,12 @@ class CityController extends Controller
     $page = isset($_GET["page"])?$_GET["page"]:1;
     $offset = 20 *$page-20;
 
-    $params = isset ($_GET['page']) ? $_GET['page'] : 1;
     $params = [$offset];
 
     $cities =  DB::select('SELECT * FROM city LIMIT 20 OFFSET ?', $params);
     $data = [
-        'cities' =>  $cities
+        'cities' =>  $cities,
+        'page' => $page
     ];
     return view( "paginatedCities", $data );
    }
