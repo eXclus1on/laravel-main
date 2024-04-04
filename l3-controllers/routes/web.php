@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\CityController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -8,3 +9,4 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get('/', [AppController::class, 'homepage']);
 Route::get('/cities', [AppController::class, 'getCities']);
+Route::get('/paginatedCities', [CityController::class, 'getCities']);
