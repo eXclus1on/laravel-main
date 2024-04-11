@@ -62,4 +62,31 @@ class CityController extends Controller
 
         return view("paginatedCities", $data);
     }
+
+    public function getAddCity()
+    {
+        $success = isset($_GET["success"]);
+        $fail = isset($_GET["fail"]);
+
+        $data = [
+            "success" => $success,
+            "fail" => $fail
+        ];
+
+        return view("addCity", $data);
+    }
+
+    public function postAddCity()
+    {
+        // Inserir na BD;
+        $bindings = ["Porto", "teste", 123, "PRT"];
+        $success = DB::insert("INSERT INTO city (ID, Name, District, Population, CountryCode) VALUES (NULL, ?, ?, ?, ?)", $bindings);
+
+        // Feito
+        if ($success) {
+            return redirect("/addCity?success");
+        } else {
+            return redirect("/addCity?fail");
+        }
+    }
 }
