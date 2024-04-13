@@ -13,8 +13,8 @@ Route::get('/api', [ApiRootController::class, 'getApiRoot']);
 Route::get('/api/cities', [CityController::class, 'getCities']);
 Route::get('/api/cities/{id}/', [CityController::class, 'getCityById']);
 Route::post('/api/cities', [CityController::class, 'postCities']);
-Route::put('/api/cities/{id}', [CityController::class, '']);
-Route::delete('/api/cities/{id}', [CityController::class, '']);
+Route::put('/api/cities/{id}', [CityController::class, 'putCity']);
+Route::delete('/api/cities/{id}', [CityController::class, 'deleteCity']);
 
 // 1 - Criar o controlador para a put Route e modificar o valor de uma cidade
 // 2 - Criar o controlador para a delete Route e apagar a cidade
