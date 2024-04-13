@@ -66,4 +66,44 @@ class CityController extends Controller
             return "No rows affected";
         }
     }
+
+    public function deleteCity(Request $request, string $id)
+    {
+
+        $result = DB::delete("DELETE FROM city WHERE Id =?", [$id]);
+
+        if ($result) {
+            $data = [
+                "status" => "success"
+            ];
+
+            return $data;
+        } else {
+            return "No rows affected";
+        }
+    }
+
+    public function putCity(Request $request, string $id)
+    {
+        $name = $request->input('name', 'default');
+        $countryCode = $request->input('countryCode', 'PRT');
+        $district = $request->input('district', 'default');
+        $population = $request->input('population', '0');
+
+        $affectedRows = DB::table('city')
+            ->where('Id', $id)
+            ->update([
+                'name' => $name,
+                'countryCode' => $countryCode,
+                'district' => $district,
+                'population' => $population
+            ]);
+
+        // Verificação se houve atualização de linhas
+        if ($affectedRows > 0) {
+            return response()->json(['status' => 'success'], 200);
+        } else {
+            return response()->json(['error' => 'City not found or no changes made'], 404);
+        }
+    }
 }
