@@ -1,35 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\ApiRootController;
+use App\Http\Controllers\CityController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/api', function () {
+Route::get('/api', [ApiRootController::class, 'getApiRoot']);
 
-    $response = [
-        "status" => "ok",
-        "message" => "Hello"
-    ];
-
-    return $response;
-});
-
-Route::get('/api/cities', function () {
-
-    $result = DB::select("SELECT COUNT(*) AS total FROM city");
-    $onlyRow = $result[0];
-    $total = $onlyRow->total;
-
-    $cities = DB::select("SELECT * FROM city");
-
-    $response = [
-        "description" => "A list of cities",
-        "count" => $total,
-        "data" => $cities
-    ];
-
-    return $response;
-});
+Route::get('/api/cities', [CityController::class, 'getCities']);
+Route::get('/api/cities/{id}/', [CityController::class, 'getCityById']);
+Route::post('/api/cities', [CityController::class, 'postCities']);
+Route::put('/api/cities/{id}', [CityController::class, '']);
+Route::delete('/api/cities/{id}', [CityController::class, '']);
